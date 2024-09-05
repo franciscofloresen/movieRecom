@@ -11,6 +11,12 @@
         <h1>Busca una película</h1>
         <form method="POST" action="/search">
             <input type="text" name="movie_name" placeholder="Ingresa el nombre de una película" required>
+            <select name="genre">
+                <option value="">Todos los géneros</option>
+                {% for genre in genres %}
+                <option value="{{ genre['id'] }}">{{ genre['name'] }}</option>
+                {% endfor %}
+            </select>
             <button type="submit">Buscar</button>
         </form>
 
@@ -26,10 +32,19 @@
                 {% endif %}
                 <div class="movie-details">
                     <h3>{{ movie['title'] }} ({{ movie['release_date'][:4] if movie['release_date'] else 'N/A' }})</h3>
+                    <p>Rating: {{ movie['vote_average'] }} / 10</p>
                     <p>{{ movie['overview'][:150] }}{% if movie['overview']|length > 150 %}...{% endif %}</p>
+                    <a href="/movie/{{ movie['id'] }}">Ver más detalles</a>
                 </div>
             </div>
             {% endfor %}
+        </div>
+
+        <div class="pagination">
+            {% if page > 1 %}
+            <a href="/search?movie_name={{ movie_name }}&genre={{ genre_id }}&page={{ page - 1 }}">Anterior</a>
+            {% endif %}
+            <a href="/search?movie_name={{ movie_name }}&genre={{ genre_id }}&page={{ page + 1 }}">Siguiente</a>
         </div>
         {% endif %}
     </div>

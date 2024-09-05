@@ -24,9 +24,9 @@ form {
     margin-bottom: 30px;
 }
 
-input {
+input, select {
     padding: 10px;
-    width: 60%;
+    width: 50%;
     margin-right: 10px;
     border: 2px solid #ddd;
     border-radius: 5px;
@@ -83,4 +83,22 @@ button:hover {
 .movie-details p {
     font-size: 14px;
     color: #555;
+}
+
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    padding: 10px 15px;
+    margin: 5px;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.pagination a:hover {
+    background-color: #0056b3;
 }
